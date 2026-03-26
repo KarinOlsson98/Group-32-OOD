@@ -13,25 +13,25 @@ I programmet ska man kunna skapa produkter, lista material, visa produktlista oc
 Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch som vi pushar till innan vi mergear till main (protected main och pull requests). 
 
 ### Mall till namngivning av branches:
-*type/category/method*
+- *type/category/method*
 
 ### Exempel:
-*feature/products/addProducts*
-*bugfix/products/removeProducts*
+- *feature/products/addProducts*
+- *bugfix/products/removeProducts*
 
 ## List of domain concepts
 
 ### Nouns (Concept)
-Produkt (Entity)
-Material
-Kategori (Value object)
-Miljöpåverkan
-Livslängd (Value object)
-Återvinningsguide (Service)
+- Produkt (Entity)
+- Material
+- Kategori (Value object)
+- Miljöpåverkan
+- Livslängd (Value object)
+- Återvinningsguide (Service)
 
 ### Verbs (Responsibilities)
-“Environmental Impact Calculation”
-Lista produkter och material
-Skapa produkt
-Visa återvinningsguide
-Definiera material
+- “Environmental Impact Calculation”
+- Lista produkter och material
+- Skapa produkt
+- Visa återvinningsguide
+- Definiera material
