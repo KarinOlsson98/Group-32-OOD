@@ -35,3 +35,15 @@ Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch 
 - Skapa produkt
 - Visa återvinningsguide
 - Definiera material
+
+## Architectural Rationale
+Write or update your README with your architectural rationale: what each package contains, what direction dependencies flow, and why interface was placed in its layer.
+
+### se.group32.presentation
+
+
+### se.group32.application
+
+
+### se.group32.domain
+
