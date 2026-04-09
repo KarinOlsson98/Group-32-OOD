@@ -1,4 +1,4 @@
-package se.group32;
+package se.group32.application;
 
 public class ProductManager {
 
