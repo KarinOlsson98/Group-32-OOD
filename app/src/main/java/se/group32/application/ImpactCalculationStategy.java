@@ -1,4 +1,4 @@
-package se.group32.domain;
+package se.group32.application;
 
 public interface ImpactCalculationStategy {
 
