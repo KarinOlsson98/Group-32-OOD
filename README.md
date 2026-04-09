@@ -37,13 +37,23 @@ Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch 
 - Definiera material
 
 ## Architectural Rationale
-Write or update your README with your architectural rationale: what each package contains, what direction dependencies flow, and why interface was placed in its layer.
+Presentationslagret kan bara få information från applikationslagret, och applikationslagret kan bara få information från domänlagret. Domänlagret har bara sin egen information. Om presentationslagret kallar på domänlagret så bryter vi reglerna.
+
+Interfacet ImpactCalculationStrategy har vi placerat i applikationslagret eftersom den tar in parametern Product, och behöver därför information om Product som ligger i domänlagret.
 
 ### se.group32.presentation
-
+- Menu
 
 ### se.group32.application
-
+- ApplicationManager
+- ProductManager
+- RecyclingGuidance
+- ImpactCalculationStrategy
+- SimpleSumStrategy
+- WeightedByLifespanStrategy
 
 ### se.group32.domain
+- Product
+- Material
+
 
