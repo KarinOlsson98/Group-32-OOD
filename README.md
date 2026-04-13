@@ -50,10 +50,6 @@ Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationsla
 ### se.group32.application
 - ApplicationManager
 - ProductManager
-- RecyclingGuidance
-- ImpactCalculationStrategy
-- SimpleSumStrategy
-- WeightedByLifespanStrategy
 
 ### se.group32.domain
 - Product
