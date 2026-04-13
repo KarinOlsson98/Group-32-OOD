@@ -39,7 +39,9 @@ Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch 
 ## Architectural Rationale
 Presentationslagret kan bara få information från applikationslagret, och applikationslagret kan bara få information från domänlagret. Domänlagret har bara sin egen information. Om presentationslagret kallar på domänlagret så bryter vi reglerna.
 
-Interfacet ImpactCalculationStrategy har vi placerat i applikationslagret eftersom den tar in parametern Product, och behöver därför information om Product som ligger i domänlagret.
+Interfacet ImpactCalculationStrategy har vi placerat i domänlagret eftersom den är en egen entity, och det är enbart 2 klasser som implementerar ImpactCalculationStrategy (SimpleSumStrategy + WeightedByLifespanStrategy).
+
+Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationslagret då abstraktklassen ska implementeras. Sedan fick vi reda på att alla klasser i domänlagret kan kommunicera mellan varandra och därmed flyttade vi klassen till domänlagret.
 
 ### se.group32.presentation
 - Menu
