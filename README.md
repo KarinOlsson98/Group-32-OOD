@@ -18,6 +18,7 @@ Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch 
 ### Exempel:
 - *feature/products/addProducts*
 - *bugfix/products/removeProducts*
+- *development/readMe/updates*
 
 ## List of domain concepts
 
@@ -57,5 +58,9 @@ Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationsla
 ### se.group32.domain
 - Product
 - Material
+- RecyclingGuidance
+- ImpactCalculationStrategy
+- SimpleSumStrategy
+- WeightedByLifespanStrategy
 
 
