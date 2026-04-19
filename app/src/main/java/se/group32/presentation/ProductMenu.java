@@ -1,4 +1,3 @@
-// Johanna
 package se.group32.presentation;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,35 +10,31 @@ import se.group32.domain.Product;
 import se.group32.domain.Material;
 
 public class ProductMenu implements MenuInterface{
-    /** ProduktMenyn ska innehålla:
-     *      Eventuellt kan vi lägga till en beskrivning om vad produktmenyn 
-     *      1. Skapa produkter
-     *      2. Lista produkter
-     *      3. Beräkna produktens impact
-     *      (4. Återvinningsguide --> Lista produkter som visar produkternas namn,
-     *              som sedan visar guide:n och kör en loop. Samma princip som materialmeny.)
-     *      qQ. Gå tillbaka till huvudmenyn
-     */
+
     private ApplicationManager applicationManager;
     private MaterialManager materialManager;
     private ProductManager productManager;
-    private Validator validator;
+    private ReportMenu reportMenu;
+    private Scanner scanner;
+    // private Validator validator;
 
-    public ProductMenu (ApplicationManager applicationManager, MaterialManager materialManager, ProductManager productManager) {
+
+    public ProductMenu (ApplicationManager applicationManager, MaterialManager materialManager, ProductManager productManager, ReportMenu reportMenu, Scanner scanner/*, Validator validator*/) {
         this.applicationManager = applicationManager;
         this.materialManager = materialManager;
         this.productManager = productManager;
+        this.reportMenu = reportMenu;
+        this.scanner = scanner;
+        // this.validator = validator; 
     }
+
     public void run () {
         boolean running = true;
-
-        //Tillfällig scanner tills validatorn är igång för att kunna testa.
-        Scanner scanner = new Scanner(System.in);
 
 
         while (running) {
             printMenu();
-            // String choice = Validator.getString("Choice: ").toLowerCase(); ??
+            // String choice = Validator.getString("Choice: ").toLowerCase();
 
             String choice = scanner.nextLine();
 
@@ -73,12 +68,13 @@ public class ProductMenu implements MenuInterface{
         String name = "Teacup"; //Validator.getString("Name of product: ") ;
         Integer lifespan = 10; //Validator.getInt("Lifespan in years: ");
 
+
         List<Material> materials = materialManager.getMaterials();
 
         System.out.println("Available materials: ");
 
-        if (materials == null || materials.isEmpty()) {
-            System.out.println("Materiallist is empty or not initiated.");
+        if (materials.isEmpty()) {
+            System.out.println("List of materials is empty");
         } else {
             for (Material m : materials) {
                 System.out.println(m.getName());
@@ -87,27 +83,30 @@ public class ProductMenu implements MenuInterface{
 
         boolean adding = true;
 
+        List<String> selectedMaterials = new ArrayList<>();
+
         while (adding) {
             
-            String input = "Plastic"; //Validator.getString("Input requested material(Write q when finished): ")
+            String input = "Plastic"; //Validator.getString("(Enter one material at a time and press Enter. Type "q" when you are done): ")
             
             /** behöver någon slags koll för att se till att materialet faktiskt finns, hur?
-            *   materialManager.exist() som returnerar boolean kpanske? 
+            *   materialManager.exist() som returnerar boolean kanske? 
             */
+
 
             if (input.equalsIgnoreCase("q")) {
                 adding = false;
-            } else /*if (materialManager.exists(input)) {
-            *    materiallist.add(input);
-            *    System.out.println("Added: " + input);
-            *} else */ {  
+            } else if (materialManager.exists(input)) {
+                selectedMaterials.add(input);
+                System.out.println("Added: " + input);
+            } else {  
                 adding = false; //Ligger här för att förhindra oändlig loop vid testning pga hårdkodat material
                 System.out.println("Material requested doesn't exist, try again!");
 
             }
         }
 
-        //applicationManager.addProduct(name, lifespan, materiallist);
+        applicationManager.addProduct(name, lifespan, selectedMaterials);
 
         System.out.println("Product has been added!");
         
@@ -115,11 +114,11 @@ public class ProductMenu implements MenuInterface{
 
     //Listar alla produkter som skapats
     public void listProduct() {
-        System.out.println("---- List of Product ----");
+        System.out.println("---- Product list ----");
 
         List<Product> products = productManager.getProducts();
 
-        if (products == null || products.isEmpty()) {
+        if (products.isEmpty()) {
             System.out.println("No products found.");
         } else {
             for (Product p : products) {
@@ -129,11 +128,14 @@ public class ProductMenu implements MenuInterface{
 
     }
 
-    public void calculateImpact() {
 
+    public void calculateImpact() {
+        System.out.println("---- Impact calculation ----");
+        reportMenu.impactCalculation(); ////Ändra namn beroende på namn på metod i reportmenu.
     }
 
     public void showRecyclingGuidance() {
-
+        System.out.println("---- Recycling Guidance ----");
+        reportMenu.showGuidance(); //Ändra namn beroende på namn på metod i reportmenu.
     }
 }
