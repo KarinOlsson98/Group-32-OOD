@@ -41,7 +41,7 @@ public class ProductMenu implements MenuInterface{
 
             switch (choice) {
                 case "1" -> createProduct();
-                case "2" -> listProduct();
+                case "2" -> ListProduct.listProduct();
                 case "3" -> calculateImpact();
                 case "4" -> showRecyclingGuidance();
                 case "q" -> running = false;
@@ -65,6 +65,7 @@ public class ProductMenu implements MenuInterface{
     public void createProduct () {
         System.out.println("---- Add product ----");
 
+        Integer id = 1; //validator.getint
         String name = "Teacup"; //Validator.getString("Name of product: ") ;
         Integer lifespan = 10; //Validator.getInt("Lifespan in years: ");
 
@@ -87,7 +88,7 @@ public class ProductMenu implements MenuInterface{
 
         while (adding) {
             
-            String input = "Plastic"; //Validator.getString("(Enter one material at a time and press Enter. Type "q" when you are done): ")
+            String input = "Plastic"; //Validator.getEnum("(Enter one material at a time and press Enter. Type "q" when you are done): ")
             
             /** behöver någon slags koll för att se till att materialet faktiskt finns, hur?
             *   materialManager.exist() som returnerar boolean kanske? 
@@ -106,26 +107,10 @@ public class ProductMenu implements MenuInterface{
             }
         }
 
-        applicationManager.addProduct(name, lifespan, selectedMaterials);
+        applicationManager.addProduct(id, name, lifespan, selectedMaterials);
 
         System.out.println("Product has been added!");
         
-    }
-
-    //Listar alla produkter som skapats
-    public void listProduct() {
-        System.out.println("---- Product list ----");
-
-        List<Product> products = productManager.getProducts();
-
-        if (products.isEmpty()) {
-            System.out.println("No products found.");
-        } else {
-            for (Product p : products) {
-                System.out.println("Name: " + p.getName() + " | Lifespan: " + p.getLifespan() + " | Materials: " + p.getMaterial());
-            }
-        }
-
     }
 
 
