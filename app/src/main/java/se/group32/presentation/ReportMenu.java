@@ -1,10 +1,19 @@
 // Da Jing
 package se.group32.presentation;
+import java.util.Scanner;
 
 public class ReportMenu{
+    private Scanner scanner;
+    private ListProduct show;
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
      *      användaren har valt att beräkna produktens miljöpåverkan.
      *      Den ska också bli kallad när användaren har valt produktens återvinningsguide.*/
+
+    // The constructor will reassign the values taken from the listproduct class and the scanner from productmenu class.
+    public ReportMenu(Scanner scanner, ListProduct listproduct) {
+        this.scanner = scanner;
+        this.listproduct = show;
+    }
 
     // This method will show a list of available products.
     public void printProduct() {
@@ -16,7 +25,7 @@ public class ReportMenu{
     public void impactCalculation(){
         boolean bool = true;
         while (bool) {
-            printProduct();
+            show.printProduct();
             System.out.print("Choose the product that you would like to calculate: ");
             String choice = scanner.nextLine();
             // Här kallar jag på parse.int.
@@ -37,7 +46,7 @@ public class ReportMenu{
     public void showGuidance(){
         boolean bool = true;
         while (bool) {
-            printProduct();
+            show.printProduct();
             System.out.print("Choose the product that you would like to show guide: ");
             String choice = scanner.nextLine();
             // Här kallar jag på parse.int.
@@ -51,7 +60,7 @@ public class ReportMenu{
             String c = scanner.nextLine();
             if (c.equalsIgnoreCase("no")) {
                 bool = false;
-            }                 
+            }
         }
     }
 
