@@ -13,14 +13,14 @@ class Main{
 }
 
 class MainMenu{
+    'Motverka DIP
     -OutputFormatter OutputFormatter
     -InputValidator inputValidator
     -ProductManager productManager
     -MaterialManager materialManager
-    -Application applicationManager
-    +menuLoop()
-    +readInput()
-    +printOutput()
+    -handleInput(String choice)
+    -printMenu()
+    +run()
 }
 
 class ProductMenu{
@@ -34,6 +34,12 @@ class MaterialMenu{
 class ReportMenu{
     -ProductManager productManager
     -MaterialManager materialManager
+    -RecyclingGuidence recyclingGuidence
+}
+
+interface MenuInterface{
+    +run()
+    -printMenu()
 }
 
 class MaterialManager{
@@ -80,10 +86,6 @@ class ProductManager{
     +calculateImpact(Product product)
 }
 
-class ApplicationManager{
-    -RecyclingGuidence recyclingGuidence
-}
-
 class OutputFormatter{
 
 }
@@ -93,18 +95,21 @@ class InputValidator{
 }
 
 Main "1" o-- "1" MainMenu
+MenuInterface <-- MainMenu
 MainMenu *-- OutputFormatter
 MainMenu *-- InputValidator
-MainMenu "1" o-- "1" ApplicationManager
 MainMenu *-- MaterialMenu
 MainMenu *-- ProductMenu
 ProductMenu *-- ReportMenu
 MaterialMenu *-- ReportMenu
+MenuInterface <-- MaterialMenu
+MenuInterface <-- ProductMenu
 ReportMenu "1" o-- "1" ProductManager
 ReportMenu "1" o-- "1" MaterialManager
+ReportMenu o-- RecyclingGuidence
 ProductManager "1" --> "many" Product
 ProductManager --> ImpactCalculationStrategy
 Product "1" *-- "many" Material
-ApplicationManager "1" *-- "1" RecyclingGuidence
+
 ImpactCalculationStrategy <-- WeightedByLifespanStrategy
 ImpactCalculationStrategy <-- SimpleSumStrategy
