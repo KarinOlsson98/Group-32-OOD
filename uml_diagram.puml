@@ -1,0 +1,110 @@
+@startuml Grupp32
+
+'comment
+'<|-- inheritence
+'*-- composition
+'o-- aggregation
+'--> uses(or dependency)
+
+Title TRASHMAN(Terrific and Right Application for Swedish Humans Managing Avfall Now)
+
+class Main{
+    +run()
+}
+
+class MainMenu{
+    -OutputFormatter OutputFormatter
+    -InputValidator inputValidator
+    -ProductManager productManager
+    -MaterialManager materialManager
+    -Application applicationManager
+    +menuLoop()
+    +readInput()
+    +printOutput()
+}
+
+class ProductMenu{
+    +run()
+}
+
+class MaterialMenu{
+    +run()
+}
+
+class ReportMenu{
+    -ProductManager productManager
+    -MaterialManager materialManager
+}
+
+class MaterialManager{
+
+}
+
+class Material{
+    -String name
+    -int impactValue
+    -String instruction
+    -enum RecyclingCategory
+}
+
+class Product{
+    -String name
+    -Material[] materials
+    -int lifespan
+    -String category
+    '+Product()
+}
+
+interface ImpactCalculationStrategy{
+    +calculateImpact(Product product)
+}
+
+class RecyclingGuidence{
+    +isProductRecyclable(Product product)
+}
+
+
+class SimpleSumStrategy{
+    +calculateImpact(Product product)
+}
+
+class WeightedByLifespanStrategy{
+    +calculateImpact(Product product)
+}
+
+class ProductManager{
+    -Product[] products
+    +createProduct()
+    +listProducts()
+    +getDetails()
+    +calculateImpact(Product product)
+}
+
+class ApplicationManager{
+    -RecyclingGuidence recyclingGuidence
+}
+
+class OutputFormatter{
+
+}
+
+class InputValidator{
+
+}
+
+Main "1" o-- "1" MainMenu
+MainMenu *-- OutputFormatter
+MainMenu *-- InputValidator
+MainMenu "1" o-- "1" ApplicationManager
+MainMenu *-- MaterialMenu
+MainMenu *-- ProductMenu
+ProductMenu *-- ReportMenu
+MaterialMenu *-- ReportMenu
+ReportMenu "1" o-- "1" ProductManager
+ReportMenu "1" o-- "1" MaterialManager
+ProductManager "1" --> "many" Product
+ProductManager --> ImpactCalculationStrategy
+Product "1" *-- "many" Material
+ApplicationManager "1" *-- "1" RecyclingGuidence
+ImpactCalculationStrategy <-- WeightedByLifespanStrategy
+ImpactCalculationStrategy <-- SimpleSumStrategy
