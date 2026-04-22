@@ -41,7 +41,7 @@ public class ProductMenu implements MenuInterface{
 
             switch (choice) {
                 case "1" -> createProduct();
-                case "2" -> ListProduct.listProduct();
+                case "2" -> listProduct();
                 case "3" -> calculateImpact();
                 case "4" -> showRecyclingGuidance();
                 case "q" -> running = false;
@@ -52,6 +52,7 @@ public class ProductMenu implements MenuInterface{
     }
 
     public void printMenu () {
+        System.out.println();
         System.out.println("---- Product Menu ----");
         System.out.println(" 1) Create products");
         System.out.println(" 2) List products");
@@ -63,22 +64,24 @@ public class ProductMenu implements MenuInterface{
 
     //Skapar ny produkt med material
     public void createProduct () {
+        System.out.println();
         System.out.println("---- Add product ----");
 
-        Integer id = 1; //validator.getint
+        System.out.println("Enter name of product: ");
         String name = "Teacup"; //Validator.getString("Name of product: ") ;
+        System.out.println("Lifespan in years: ");
         Integer lifespan = 10; //Validator.getInt("Lifespan in years: ");
 
 
-        List<Material> materials = materialManager.getMaterials();
+        List<Material> materials = new ArrayList<>(); /* materialManager.getMaterials(); */
 
         System.out.println("Available materials: ");
 
-        if (materials.isEmpty()) {
+        if (materials == null || materials.isEmpty()) {
             System.out.println("List of materials is empty");
         } else {
             for (Material m : materials) {
-                System.out.println(m.getName());
+                System.out.println(m);
             }
         }
 
@@ -93,8 +96,9 @@ public class ProductMenu implements MenuInterface{
             /** behöver någon slags koll för att se till att materialet faktiskt finns, hur?
             *   materialManager.exist() som returnerar boolean kanske? 
             */
-
-
+            System.out.println("Material " + input + " has been added");
+            adding = false;//Ligger här för att förhindra oändlig loop vid testning pga hårdkodat material
+/* 
             if (input.equalsIgnoreCase("q")) {
                 adding = false;
             } else if (materialManager.exists(input)) {
@@ -104,23 +108,50 @@ public class ProductMenu implements MenuInterface{
                 adding = false; //Ligger här för att förhindra oändlig loop vid testning pga hårdkodat material
                 System.out.println("Material requested doesn't exist, try again!");
 
-            }
+            }*/
         }
 
-        applicationManager.addProduct(id, name, lifespan, selectedMaterials);
+        // applicationManager.addProduct(id, name, lifespan, selectedMaterials);
 
-        System.out.println("Product has been added!");
+        System.out.println("Product " + name + " has been added!");
         
     }
 
+        public void listProduct() {
+        System.out.println();
+        System.out.println("---- Product list ----");
+
+        List<Product> products = new ArrayList<>(); /* productManager.getProducts(); */
+
+        if (products == null || products.isEmpty()) {
+            System.out.println("No products found.");
+        } else {
+            for (Product p : products) {
+                System.out.println(p /*"Product id: " + p.getId() + "Name: " + p.getName() + " | Lifespan: " + p.getLifespan() + " | Materials: " + p.getMaterial()"*/);
+            }
+        }
+
+    }
+
+
 
     public void calculateImpact() {
+        System.out.println();
         System.out.println("---- Impact calculation ----");
-        reportMenu.impactCalculation(); ////Ändra namn beroende på namn på metod i reportmenu.
+        listProduct();
+        System.out.println("Choose the product you would like to calculate by pressing the corresponding index number: ");
+        //validator.int för att validera input
+        /*Få en INT - input om vilken produkt som vill väljas */
+        //reportMenu.impactCalculation(/*input*/); ////Ändra namn beroende på namn på metod i reportmenu.
     }
 
     public void showRecyclingGuidance() {
+        System.out.println();
         System.out.println("---- Recycling Guidance ----");
-        reportMenu.showGuidance(); //Ändra namn beroende på namn på metod i reportmenu.
+        listProduct();
+        System.out.println("Choose the product you would like to know more about by pressing the corresponding index number: ");
+        /*validator.int för att validera input
+        Få en INT - input om vilken produkt som vill väljas */
+        //reportMenu.productGuide(/*input*/); //Ändra namn beroende på namn på metod i reportmenu.
     }
 }
