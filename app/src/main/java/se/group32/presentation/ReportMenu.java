@@ -19,12 +19,14 @@ public class ReportMenu{
         int number = 1000;
         String product = "Vattenflaska";
         String result = "Hög";
+        String lifespan = "1 year";
 
         // Output
         System.out.println("--------------------");
         System.out.println("Product ID: " + choice);
         System.out.println("Product: " + product);
         System.out.printf("The product's enviromental impact is %s with the of score of %d.", result, number + ".");
+        System.out.println("Product's lifespan: " + lifespan);
         System.out.println("--------------------");
 
     }
