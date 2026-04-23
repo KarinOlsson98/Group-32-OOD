@@ -45,11 +45,17 @@ Interfacet ImpactCalculationStrategy har vi placerat i domänlagret eftersom den
 Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationslagret då abstraktklassen ska implementeras. Sedan fick vi reda på att alla klasser i domänlagret kan kommunicera mellan varandra och därmed flyttade vi klassen till domänlagret.
 
 ### se.group32.presentation
-- Menu
+- MainMenu
+- MenuInterface
+- MaterialMenu
+- ProductMenu
+- ReportMenu
+- Validator
 
 ### se.group32.application
 - ApplicationManager
 - ProductManager
+- MaterialManager
 
 ### se.group32.domain
 - Product
@@ -58,5 +64,3 @@ Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationsla
 - ImpactCalculationStrategy
 - SimpleSumStrategy
 - WeightedByLifespanStrategy
-
-
