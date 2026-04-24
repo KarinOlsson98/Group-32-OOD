@@ -2,19 +2,30 @@ package se.group32.presentation;
 
 import java.util.Scanner;
 
+import se.group32.application.ApplicationManager;
+import se.group32.application.ProductManager;
+
 public class MainMenu implements MenuInterface{
 
     private boolean isRunning = true; 
     
-    // Tillfällig scanner
     private Scanner scanner = new Scanner(System.in); 
+    private ApplicationManager applicationManager = new ApplicationManager();
+    private MaterialManager materialManager = new MaterialManager();
+    private ProductManager productManager = new ProductManager();
+
+    private ProductMenu productMenu = new ProductMenu(scanner, applicationManager, materialManager, productManager);
+    private MaterialMenu materialMenu = new MaterialMenu(scanner);
+    private ReportMenu reportMenu = new ReportMenu();
+
 
     @Override
     public void printMenu() {
-        System.out.println("\n----- Main Menu ----");
+        System.out.println("\n----- Main Menu -----");
         System.out.println("1) Manage products");
         System.out.println("2) List of materials");
         System.out.println("q) Quit");
+        System.out.println("---------------------");
         System.out.print("Choose an option: "); 
     }
 
@@ -32,11 +43,9 @@ public class MainMenu implements MenuInterface{
     private void handleInput(String choice) {
         switch (choice.toLowerCase()) { 
             case "1":
-                ProductMenu productMenu = new ProductMenu();
                 productMenu.run();
                 break;
             case "2":
-                MaterialMenu materialMenu = new MaterialMenu();
                 materialMenu.run();
                 break;
             case "q":
