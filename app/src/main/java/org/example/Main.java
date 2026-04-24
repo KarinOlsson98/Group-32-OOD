@@ -3,12 +3,19 @@
  */
 package org.example;
 
+import se.group32.domain.Material;
+import se.group32.presentation.MaterialMenu;
+import java.util.Scanner;
+
 public class Main {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println(new Main().getGreeting());
+        MaterialMenu materialMenu = new MaterialMenu(scanner);
+        materialMenu.run();
     }
 }

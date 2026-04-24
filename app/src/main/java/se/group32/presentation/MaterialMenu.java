@@ -1,5 +1,5 @@
-// Anton
 package se.group32.presentation;
+import java.util.Scanner;
 
 public class MaterialMenu implements MenuInterface{
     /** MaterialMeny ska direkt lista material med deras alternativ som är indexes.
@@ -9,4 +9,45 @@ public class MaterialMenu implements MenuInterface{
      * 
      *      Notera att frågan kommer att upprepas tills användaren vill gå tillbaka till huvudmenyn.
     */
+    private Scanner scanner;
+
+    //Injects a scanner object from MainMenu class
+    public MaterialMenu(Scanner scanner){
+        this.scanner = scanner;
+    }
+
+    public void run(){
+        String selection;
+        do{
+            printMenu();
+            System.out.print("Want to see more info?(y/n)");
+            selection = scanner.nextLine();
+            choiceSelection(selection);
+
+        }
+        while(!(selection.equals("q") || selection.equals("n")));
+    }
+
+    public void printMenu(){
+        //MaterialManager is referenced here
+        System.out.println("Look at all the material");
+        System.out.println("q to quit");
+    }
+
+    private void choiceSelection(String selection){
+        switch(selection){
+                case "y":
+                    System.out.println("Entering material selection");
+                    materialSelection();
+                    break;
+                case "n":
+                    System.out.println("Returning to main menu");
+                    break;
+            }
+    }
+
+    private void materialSelection(){
+        System.out.println("Enter name/index of material");
+        String selection = scanner.nextLine();
+    }
 }
