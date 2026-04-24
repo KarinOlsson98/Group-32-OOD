@@ -152,7 +152,7 @@ public class ProductMenu implements MenuInterface{
         listProduct();
         System.out.println("Choose the product you would like to know more about by pressing the corresponding index number: ");
         int input 1;
-        reportMenu.showMaterialImpact(input);
+        reportMenu.impactCalculation(input);
         /*validator.int för att validera input
         Få en INT - input om vilken produkt som vill väljas */
     }
