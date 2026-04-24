@@ -19,13 +19,12 @@ public class ProductMenu implements MenuInterface{
     // private Validator validator;
 
 
-    public ProductMenu (ApplicationManager applicationManager, MaterialManager materialManager, ProductManager productManager, ReportMenu reportMenu, Scanner scanner/*, Validator validator*/) {
+    public ProductMenu (ApplicationManager applicationManager, MaterialManager materialManager, ProductManager productManager, ReportMenu reportMenu, Scanner scanner) {
         this.applicationManager = applicationManager;
         this.materialManager = materialManager;
         this.productManager = productManager;
         this.reportMenu = reportMenu;
         this.scanner = scanner;
-        // this.validator = validator; 
     }
 
     public void run () {
@@ -34,7 +33,6 @@ public class ProductMenu implements MenuInterface{
 
         while (running) {
             printMenu();
-            // String choice = Validator.getString("Choice: ").toLowerCase();
 
             String choice = scanner.nextLine();
 
@@ -68,9 +66,9 @@ public class ProductMenu implements MenuInterface{
         System.out.println("---- Add product ----");
 
         System.out.println("Enter name of product: ");
-        String name = "Teacup"; //Validator.getString("Name of product: ") ;
+        String name = "Teacup"; 
         System.out.println("Lifespan in years: ");
-        Integer lifespan = 10; //Validator.getInt("Lifespan in years: ");
+        Integer lifespan = 10; 
 
 
         List<Material> materials = new ArrayList<>(); /* materialManager.getMaterials(); */
@@ -91,7 +89,7 @@ public class ProductMenu implements MenuInterface{
 
         while (adding) {
             
-            String input = "Plastic"; //Validator.getEnum("(Enter one material at a time and press Enter. Type "q" when you are done): ")
+            String input = "Plastic"; /*("(Enter one material at a time and press Enter. Type "q" when you are done): ")
             
             /** behöver någon slags koll för att se till att materialet faktiskt finns, hur?
             *   materialManager.exist() som returnerar boolean kanske? 
@@ -127,7 +125,7 @@ public class ProductMenu implements MenuInterface{
             System.out.println("No products found.");
         } else {
             for (Product p : products) {
-                System.out.println(p /*"Product id: " + p.getId() + "Name: " + p.getName() + " | Lifespan: " + p.getLifespan() + " | Materials: " + p.getMaterial()"*/);
+                System.out.println(/*"Product id: " + p.getId() + "Name: " + p.getName() + " | Lifespan: " + p.getLifespan() + " | Materials: " + p.getMaterial()"*/);
             }
         }
 
@@ -138,22 +136,48 @@ public class ProductMenu implements MenuInterface{
     public void calculateImpact() {
         System.out.println();
         System.out.println("---- Impact calculation ----");
-        listProduct();
-        System.out.println("Choose the product you would like to calculate by pressing the corresponding index number: ");
-        int input = 1;
-        reportMenu.showGuidance(input);
-        //validator.int för att validera input
-        /*Få en INT - input om vilken produkt som vill väljas */
+
+
+        boolean result = false;
+        while (!result) {
+            listProduct();
+
+            System.out.println();
+            System.out.println("Choose the product you would like to calculate by pressing the corresponding index number: ");
+
+            String input = scanner.nextLine();
+            boolean result = InputValidator.validateInt(input);
+            if (result){
+                break;
+            } else {
+                System.out.println("Not a valid answer.");
+            }
+        }
+
+        reportMenu.impactCalculation(input);
+
     }
 
     public void showRecyclingGuidance() {
         System.out.println();
         System.out.println("---- Recycling Guidance ----");
-        listProduct();
-        System.out.println("Choose the product you would like to know more about by pressing the corresponding index number: ");
-        int input 1;
-        reportMenu.impactCalculation(input);
-        /*validator.int för att validera input
-        Få en INT - input om vilken produkt som vill väljas */
+
+        boolean result = false;
+        while (!result) {
+            listProduct();
+
+            System.out.println();
+            System.out.println("Choose the product you would like to know more about by pressing the corresponding index number: ");
+
+            String input = scanner.nextLine();
+            boolean result = InputValidator.validateInt(input);
+            if (result){
+                break;
+            } else {
+                System.out.println("Not a valid answer.");
+            }
+        }
+
+        reportMenu.showGuidance(input);
     }
 }
