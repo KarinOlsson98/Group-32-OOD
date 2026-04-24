@@ -1,4 +1,3 @@
-// Anton
 package se.group32.presentation;
 import java.util.Scanner;
 
