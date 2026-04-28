@@ -1,5 +1,8 @@
 package se.group32.presentation;
 
+import se.group32.application.MaterialManager;
+import se.group32.application.ProductManager;
+
 public class ReportMenu{
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
      *      användaren har valt att beräkna produktens miljöpåverkan eller återvinningsguide:n
@@ -14,7 +17,6 @@ public class ReportMenu{
 
         // Relay the index to the productManager to find the right product for calculate.
         // Pre-determined values for testing.
-        choice = 17;
         int number = 1000;
         String product = "Vattenflaska";
         String result = "Hög";
@@ -39,7 +41,6 @@ public class ReportMenu{
         // Relay the index to the productManager to find the right product.
         // Pre-determined values for testing.
         String productName = "Vattenflaska";
-        choice = 1;
         String materialName1 = "Plast (PET)";
 
         // Output
@@ -60,7 +61,6 @@ public class ReportMenu{
         // Pre-determined values for testing.
         String material1 = "Plast";
         String material2 = "Hög";
-        choice = 10;
 
         // Output
         System.out.println("--------------------");
