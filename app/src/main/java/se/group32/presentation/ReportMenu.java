@@ -1,7 +1,6 @@
 package se.group32.presentation;
 
-import se.group32.application.MaterialManager;
-import se.group32.application.ProductManager;
+import se.group32.application.*; // Assume that we only have Material- and ProductManager classes only.
 
 public class ReportMenu{
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
@@ -26,7 +25,7 @@ public class ReportMenu{
         System.out.println("--------------------");
         System.out.println("Product ID: " + choice);
         System.out.println("Product: " + product);
-        System.out.printf("The product's enviromental impact is %s with the of score of %d.", result, number + ".");
+        System.out.printf("The product's enviromental impact is %s with the of score of %d%n.", result, number);
         System.out.println("Product's lifespan: " + lifespan);
         System.out.println("--------------------");
 
