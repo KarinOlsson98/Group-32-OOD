@@ -36,6 +36,8 @@ public class MaterialMenu implements MenuInterface{
 
     public void printMenu(){
         //MaterialManager is referenced here
+        //materialList = Material.getMaterial()
+        //for(Material material : materialList){}
         System.out.println("Look at all the material");
         System.out.println("q to quit");
     }
