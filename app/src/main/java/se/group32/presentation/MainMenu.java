@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import se.group32.application.ApplicationManager;
 import se.group32.application.ProductManager;
+import se.group32.application.MaterialManager;
 
 public class MainMenu implements MenuInterface{
 
@@ -14,9 +15,9 @@ public class MainMenu implements MenuInterface{
     private MaterialManager materialManager = new MaterialManager();
     private ProductManager productManager = new ProductManager();
 
-    private ProductMenu productMenu = new ProductMenu(applicationManager, materialManager, productManager, reportMenu, scanner);
     private MaterialMenu materialMenu = new MaterialMenu(scanner);
     private ReportMenu reportMenu = new ReportMenu();
+    private ProductMenu productMenu = new ProductMenu(applicationManager, materialManager, productManager, reportMenu, scanner);
 
 
     @Override
