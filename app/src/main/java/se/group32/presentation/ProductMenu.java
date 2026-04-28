@@ -6,8 +6,8 @@ import java.util.Scanner;
 import se.group32.application.ApplicationManager;
 import se.group32.application.MaterialManager;
 import se.group32.application.ProductManager;
-import se.group32.domain.Product;
 import se.group32.domain.Material;
+import se.group32.domain.Product;
 
 public class ProductMenu implements MenuInterface{
 
@@ -136,7 +136,7 @@ public class ProductMenu implements MenuInterface{
     public void calculateImpact() {
         System.out.println();
         System.out.println("---- Impact calculation ----");
-
+        int parsedInput = 0;
 
         boolean result = false;
         while (!result) {
@@ -146,22 +146,23 @@ public class ProductMenu implements MenuInterface{
             System.out.println("Choose the product you would like to calculate by pressing the corresponding index number: ");
 
             String input = scanner.nextLine();
-            boolean result = InputValidator.validateInt(input);
+            result = InputValidator.validateInt(input);
             if (result){
+                parsedInput = Integer.parseInt(input);
                 break;
             } else {
                 System.out.println("Not a valid answer.");
             }
         }
 
-        reportMenu.impactCalculation(input);
+        reportMenu.impactCalculation(parsedInput);
 
     }
 
     public void showRecyclingGuidance() {
         System.out.println();
         System.out.println("---- Recycling Guidance ----");
-
+        int parsedInput = 0;
         boolean result = false;
         while (!result) {
             listProduct();
@@ -170,14 +171,15 @@ public class ProductMenu implements MenuInterface{
             System.out.println("Choose the product you would like to know more about by pressing the corresponding index number: ");
 
             String input = scanner.nextLine();
-            boolean result = InputValidator.validateInt(input);
+            result = InputValidator.validateInt(input);
             if (result){
+                parsedInput = Integer.parseInt(input);
                 break;
             } else {
                 System.out.println("Not a valid answer.");
             }
         }
 
-        reportMenu.showGuidance(input);
+        reportMenu.showGuidance(parsedInput);
     }
 }
