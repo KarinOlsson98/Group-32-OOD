@@ -16,7 +16,7 @@ public class MainMenu implements MenuInterface{
     private ProductManager productManager = new ProductManager();
 
     private ReportMenu reportMenu = new ReportMenu();
-    private MaterialMenu materialMenu = new MaterialMenu(scanner);
+    private MaterialMenu materialMenu = new MaterialMenu(materialManager, reportMenu, scanner);
     private ProductMenu productMenu = new ProductMenu(applicationManager, materialManager, productManager, reportMenu, scanner);
 
 
