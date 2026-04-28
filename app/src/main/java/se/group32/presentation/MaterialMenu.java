@@ -1,5 +1,6 @@
 package se.group32.presentation;
 import java.util.Scanner;
+import se.group32.application.MaterialManager;
 
 public class MaterialMenu implements MenuInterface{
     /** MaterialMeny ska direkt lista material med deras alternativ som är indexes.
@@ -10,10 +11,15 @@ public class MaterialMenu implements MenuInterface{
      *      Notera att frågan kommer att upprepas tills användaren vill gå tillbaka till huvudmenyn.
     */
     private Scanner scanner;
+    private MaterialManager materialManager;
+    private ReportMenu reportMenu;
 
     //Injects a scanner object from MainMenu class
-    public MaterialMenu(Scanner scanner){
+    public MaterialMenu(MaterialManager materialManager ,ReportMenu reportMenu ,Scanner scanner){
         this.scanner = scanner;
+        this.materialManager = materialManager;
+        this.reportMenu = reportMenu;
+        
     }
 
     public void run(){
