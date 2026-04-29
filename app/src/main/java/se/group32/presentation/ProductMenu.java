@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import se.group32.application.ApplicationManager;
 import se.group32.application.MaterialManager;
 import se.group32.application.ProductManager;
 import se.group32.domain.Material;
@@ -11,22 +10,20 @@ import se.group32.domain.Product;
 
 public class ProductMenu implements MenuInterface{
 
-    private ApplicationManager applicationManager;
     private MaterialManager materialManager;
     private ProductManager productManager;
     private ReportMenu reportMenu;
     private Scanner scanner;
-    // private Validator validator;
 
 
-    public ProductMenu (ApplicationManager applicationManager, MaterialManager materialManager, ProductManager productManager, ReportMenu reportMenu, Scanner scanner) {
-        this.applicationManager = applicationManager;
+    public ProductMenu (MaterialManager materialManager, ProductManager productManager, ReportMenu reportMenu, Scanner scanner) {
         this.materialManager = materialManager;
         this.productManager = productManager;
         this.reportMenu = reportMenu;
         this.scanner = scanner;
     }
 
+    @Override
     public void run () {
         boolean running = true;
 
@@ -49,6 +46,7 @@ public class ProductMenu implements MenuInterface{
         }
     }
 
+    @Override
     public void printMenu () {
         System.out.println();
         System.out.println("---- Product Menu ----");
@@ -61,7 +59,7 @@ public class ProductMenu implements MenuInterface{
     }
 
     //Skapar ny produkt med material
-    public void createProduct () {
+    private void createProduct () {
         System.out.println();
         System.out.println("---- Add product ----");
 
@@ -115,7 +113,7 @@ public class ProductMenu implements MenuInterface{
         
     }
 
-        public void listProduct() {
+        private void listProduct() {
         System.out.println();
         System.out.println("---- Product list ----");
 
@@ -133,7 +131,7 @@ public class ProductMenu implements MenuInterface{
 
 
 
-    public void calculateImpact() {
+    private void calculateImpact() {
         System.out.println();
         System.out.println("---- Impact calculation ----");
         int parsedInput = 0;
@@ -159,7 +157,7 @@ public class ProductMenu implements MenuInterface{
 
     }
 
-    public void showRecyclingGuidance() {
+    private void showRecyclingGuidance() {
         System.out.println();
         System.out.println("---- Recycling Guidance ----");
         int parsedInput = 0;
