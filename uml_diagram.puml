@@ -8,14 +8,10 @@
 
 Title TRASHMAN(Terrific and Right Application for Swedish Humans Managing Avfall Now)
 
-class Main{
-    +run()
-}
 
 class MainMenu{
     'Motverka DIP
     -OutputFormatter OutputFormatter
-    -InputValidator inputValidator
     -ProductManager productManager
     -MaterialManager materialManager
     -handleInput(String choice)
@@ -25,16 +21,25 @@ class MainMenu{
 
 class ProductMenu{
     +run()
+    -printMenu()
+    -createProduct()
+    -listProduct()
+    -calculateImpact()
+    -showRecyclingGuidance()
 }
 
 class MaterialMenu{
     +run()
+    -printMenu()
 }
 
 class ReportMenu{
     -ProductManager productManager
     -MaterialManager materialManager
     -RecyclingGuidence recyclingGuidence
+    +impactCalculation(int choice)
+    +showGuidance(int choice)
+    +showMaterialImpact(int choice)
 }
 
 interface MenuInterface{
@@ -43,14 +48,14 @@ interface MenuInterface{
 }
 
 class MaterialManager{
-
+    -Material[] materials
+    +listMaterial()
 }
 
 class Material{
     -String name
     -int impactValue
-    -String instruction
-    -enum RecyclingCategory
+    -RecyclingCategory recyclingCategory
 }
 
 class Product{
@@ -65,8 +70,10 @@ interface ImpactCalculationStrategy{
     +calculateImpact(Product product)
 }
 
+
 class RecyclingGuidence{
     +isProductRecyclable(Product product)
+    +isMaterialRecyclable(Material material)
 }
 
 
@@ -86,18 +93,16 @@ class ProductManager{
     +calculateImpact(Product product)
 }
 
-class OutputFormatter{
-
-}
-
 class InputValidator{
-    +ValidateInt(String string)
+    +ValidateInt(String string):boolean
 }
 
-Main "1" o-- "1" MainMenu
+enum RecyclingCategory{
+    {PLASTIC, PAPER, METAL}
+}
+
+'Main "1" o-- "1" MainMenu
 MenuInterface <-- MainMenu
-MainMenu *-- OutputFormatter
-MainMenu *-- InputValidator
 MainMenu *-- MaterialMenu
 MainMenu *-- ProductMenu
 ProductMenu *-- ReportMenu
@@ -106,10 +111,15 @@ MenuInterface <-- MaterialMenu
 MenuInterface <-- ProductMenu
 ReportMenu "1" o-- "1" ProductManager
 ReportMenu "1" o-- "1" MaterialManager
-ReportMenu o-- RecyclingGuidence
+MaterialManager o-- RecyclingGuidence
+ProductManager o-- RecyclingGuidence
 ProductManager "1" --> "many" Product
+ProductMenu o-- ProductManager
+ProductMenu --> InputValidator
 ProductManager --> ImpactCalculationStrategy
 Product "1" *-- "many" Material
+Material *-- RecyclingCategory
+MaterialMenu --> InputValidator
 
 ImpactCalculationStrategy <-- WeightedByLifespanStrategy
 ImpactCalculationStrategy <-- SimpleSumStrategy
