@@ -2,7 +2,6 @@ package se.group32.presentation;
 
 import java.util.Scanner;
 
-import se.group32.application.ApplicationManager;
 import se.group32.application.ProductManager;
 import se.group32.application.MaterialManager;
 
@@ -11,13 +10,12 @@ public class MainMenu implements MenuInterface{
     private boolean isRunning = true; 
     
     private Scanner scanner = new Scanner(System.in); 
-    private ApplicationManager applicationManager = new ApplicationManager();
     private MaterialManager materialManager = new MaterialManager();
     private ProductManager productManager = new ProductManager();
 
     private ReportMenu reportMenu = new ReportMenu();
     private MaterialMenu materialMenu = new MaterialMenu(materialManager, reportMenu, scanner);
-    private ProductMenu productMenu = new ProductMenu(applicationManager, materialManager, productManager, reportMenu, scanner);
+    private ProductMenu productMenu = new ProductMenu(materialManager, productManager, reportMenu, scanner);
 
 
     @Override
