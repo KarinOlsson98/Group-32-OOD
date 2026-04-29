@@ -6,8 +6,25 @@ TRASHMAN är ett avfallshanteringsprogram där användaren kan skapa produkter u
 System Purpose (Varför ska programmet finnas?)
 I programmet ska man kunna skapa produkter, lista material, visa produktlista och beräkna miljöpåverkan.
 
-## Teamroller – TBA.
+## Teamroller
+### Karin
+- MainMenu
+- Main
+- Lista produkter
 
+
+### Johanna
+- ProductMenu
+- Skapa produkt
+
+### Anton
+- MaterialMenu
+- Lista material
+
+### Da Jing
+- ReportMenu
+- InputValidator
+- Visa produktens återvinningsguide
 
 ## Git workflow description
 Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch som vi pushar till innan vi mergear till main (protected main och pull requests). 
@@ -50,7 +67,7 @@ Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationsla
 - MaterialMenu
 - ProductMenu
 - ReportMenu
-- Validator
+- InputValidator
 
 ### se.group32.application
 - ProductManager
@@ -63,3 +80,18 @@ Vi tänkte först att ImpactCalculationStrategy skulle placeras i applikationsla
 - ImpactCalculationStrategy
 - SimpleSumStrategy
 - WeightedByLifespanStrategy
+
+## Design Patterns
+### Strategy
+Vi har redan sen tidigare en Strategy, genom att ha interfacet ImpactCalculationStrategy som SimpleSumStrategy och WeightedByLifespanStrategy implementerar. Detta gör att det är enkelt att lägga till fler strategier ifall det behövs.
+
+### Factory
+Eftersom att i vårt program gör inte användaren ett val om vilken uträkning den vill göra, utan får båda två samtidigt, behöver vi inte en Factory.
+
+## Use Cases
+- Skapa produkt
+- Lista produkter
+- Lista material
+- Beräkna produktens impact
+- Hämta information om materialet (återvinningsguide, impact, namn)
+- Visa produktens återvinningsguide
