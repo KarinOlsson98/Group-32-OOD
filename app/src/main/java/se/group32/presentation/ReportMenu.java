@@ -1,5 +1,7 @@
 package se.group32.presentation;
 
+import se.group32.application.*; // Assume that we only have Material- and ProductManager classes only.
+
 public class ReportMenu{
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
      *      användaren har valt att beräkna produktens miljöpåverkan eller återvinningsguide:n
@@ -14,7 +16,6 @@ public class ReportMenu{
 
         // Relay the index to the productManager to find the right product for calculate.
         // Pre-determined values for testing.
-        choice = 17;
         int number = 1000;
         String product = "Vattenflaska";
         String result = "Hög";
@@ -24,7 +25,7 @@ public class ReportMenu{
         System.out.println("--------------------");
         System.out.println("Product ID: " + choice);
         System.out.println("Product: " + product);
-        System.out.printf("The product's enviromental impact is %s with the of score of %d.", result, number + ".");
+        System.out.printf("The product's enviromental impact is %s with the of score of %d%n.", result, number);
         System.out.println("Product's lifespan: " + lifespan);
         System.out.println("--------------------");
 
@@ -39,7 +40,6 @@ public class ReportMenu{
         // Relay the index to the productManager to find the right product.
         // Pre-determined values for testing.
         String productName = "Vattenflaska";
-        choice = 1;
         String materialName1 = "Plast (PET)";
 
         // Output
@@ -60,7 +60,6 @@ public class ReportMenu{
         // Pre-determined values for testing.
         String material1 = "Plast";
         String material2 = "Hög";
-        choice = 10;
 
         // Output
         System.out.println("--------------------");
