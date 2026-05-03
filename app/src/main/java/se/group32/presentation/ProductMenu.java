@@ -90,7 +90,7 @@ public class ProductMenu implements MenuInterface{
             System.out.println("List of materials is empty");
         } else {
             for (Material m : materials) {
-                System.out.println("ID: " + m.getId() + "name: " + m.getName());
+                System.out.println("ID: " + m.getId() + " | Name: " + m.getName());
             }
         }
 
@@ -98,8 +98,11 @@ public class ProductMenu implements MenuInterface{
 
         List<Material> selectedMaterials = new ArrayList<>();
 
+
+        // Samma material kan råka läggas till flera gånger, koda en spärr för att det inte ska kunna hända här!!
+    
         while (adding) {
-            
+            System.out.println();
             System.out.println("Enter ID of material you would like to add(or 'q' to finish): ");
             String input = scanner.nextLine();
 
