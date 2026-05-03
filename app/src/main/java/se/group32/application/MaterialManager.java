@@ -4,7 +4,12 @@ import java.util.ArrayList;
 
 public class MaterialManager {
     
-    ArrayList<Material> materials = new ArrayList<Material>();
+    private ArrayList<Material> materials = new ArrayList<Material>();
+
+    public MaterialManager() {
+        materials.add(new Material(1, "Plastic")); //Hårdkodat för testning
+        materials.add(new Material(2, "Aluminum")); //Hårdkodat för testning
+    }
 
     public ArrayList<Material> getMaterial(){
         return materials;
