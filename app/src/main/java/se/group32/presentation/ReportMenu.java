@@ -12,7 +12,6 @@ public class ReportMenu{
     public void impactCalculation(int choice){
         // Prints outputs to show that it's working.
         System.out.println("impactCalculation-metoden kallad...");
-        System.out.println("Beepboop...");
 
         // Relay the index to the productManager to find the right product for calculate.
         // Pre-determined values for testing.
@@ -32,16 +31,15 @@ public class ReportMenu{
 
     }
 
-    // This method will create the output and relay the parameters to the application layer (productManager).
+    // The method will relay the chosen product and print an output that shows their product's recyclingGuidance.
+    // It shall contain the Product's ID, Name, Recycling Category and Material (Optional).
     public void showGuidance(int choice, ProductManager pm){
-        // Relay the index to the productManager to find the right product.
-        // Pre-determined values for testing.
-        String materialName1 = "Plast (PET)";
-
         // Output
         System.out.println("--------------------");
-        pm.getRecyclingGuidance(choice);
-        System.out.println("Material: " + materialName1);
+        System.out.println("Product ID : " + choice);
+        System.out.println("Product Name : " + pm.getProductName_dj(choice));
+        System.out.println("Material(s) : " + pm.getProductsMaterials_dj(choice));
+        System.out.println("Recycling Category : " + pm.getRecyclingGuidance_dj(choice));
         System.out.println("--------------------");
     }
 
@@ -49,7 +47,6 @@ public class ReportMenu{
     public void showMaterialImpact(int choice) {
         // Prints outputs to show that it's working.
         System.out.println("showMaterial-metoden kallad...");
-        System.out.println("Beepboop...");
 
         // Relay the index to the materialManager to find the right material.
         // Pre-determined values for testing.
