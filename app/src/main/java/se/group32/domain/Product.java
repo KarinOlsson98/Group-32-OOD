@@ -7,7 +7,7 @@ public class Product {
         return "Water Bottle";
     }
 
-    public String getProductsMaterials(int choice) {
+    public String getProductsMaterials_dj(int choice) {
         return material.getMaterial_dj();
     }
 
