@@ -8,7 +8,6 @@ import se.group32.application.MaterialManager;
 public class MainMenu implements MenuInterface{
 
     private boolean isRunning = true; 
-    
     private Scanner scanner = new Scanner(System.in); 
     private MaterialManager materialManager = new MaterialManager();
     private ProductManager productManager = new ProductManager();

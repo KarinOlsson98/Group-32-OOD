@@ -1,18 +1,14 @@
 package se.group32.application;
 
 // import se.group32.domain.RecyclingGuidance;
-import se.group32.domain.Product;
+// import se.group32.domain.Product;
 
 public class ProductManager {
-    Product product;
 
-    public ProductManager(Product product) {
-        this.product = product;
-    }
     // Get recyclingGuidance.
     public void getRecyclingGuidance(int choice) {
         System.out.println("Hämtar...");
         System.out.println("Product ID: " + choice);
-        System.out.println("Product" + product.get_product_name_dj());
+        System.out.println("Product: Vattenflaska");
     }
 }
