@@ -1,5 +1,7 @@
 package se.group32.presentation;
 
+import se.group32.application.ProductManager;
+
 public class ReportMenu{
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
      *      användaren har valt att beräkna produktens miljöpåverkan eller återvinningsguide:n
@@ -31,21 +33,14 @@ public class ReportMenu{
     }
 
     // This method will create the output and relay the parameters to the application layer (productManager).
-    public void showGuidance(int choice){
-        // Prints outputs to show that it's working.
-        System.out.println("showGuidance-metoden kallad...");
-        System.out.println("Beepboop...");
-
+    public void showGuidance(int choice, ProductManager pm){
         // Relay the index to the productManager to find the right product.
         // Pre-determined values for testing.
-        String productName = "Vattenflaska";
-        choice = 1;
         String materialName1 = "Plast (PET)";
 
         // Output
         System.out.println("--------------------");
-        System.out.println("Product ID: " + choice);
-        System.out.println("Product: " + productName);
+        pm.getRecyclingGuidance(choice);
         System.out.println("Material: " + materialName1);
         System.out.println("--------------------");
     }

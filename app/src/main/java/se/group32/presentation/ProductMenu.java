@@ -177,7 +177,7 @@ public class ProductMenu implements MenuInterface{
                 System.out.println("Not a valid answer.");
             }
         }
-
-        reportMenu.showGuidance(parsedInput);
+        
+        reportMenu.showGuidance(parsedInput, productManager);
     }
 }
