@@ -84,7 +84,7 @@ public class ProductMenu implements MenuInterface{
 
         System.out.println("Available materials: ");
 
-        List<Material> materials = materialManager.getMaterials();
+        List<Material> materials = materialManager.getMaterial();
 
         if (materials == null || materials.isEmpty()) {
             System.out.println("List of materials is empty");
