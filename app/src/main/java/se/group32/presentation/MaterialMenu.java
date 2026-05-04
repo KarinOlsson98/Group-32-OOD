@@ -1,6 +1,8 @@
 package se.group32.presentation;
+import java.util.ArrayList;
 import java.util.Scanner;
 import se.group32.application.MaterialManager;
+import se.group32.domain.Material;
 
 public class MaterialMenu implements MenuInterface{
     /** MaterialMeny ska direkt lista material med deras alternativ som är indexes.
@@ -35,11 +37,17 @@ public class MaterialMenu implements MenuInterface{
     }
 
     public void printMenu(){
-        //MaterialManager is referenced here
-        //materialList = Material.getMaterial()
-        //for(Material material : materialList){}
-        System.out.println("Look at all the material");
-        System.out.println("q to quit");
+        materialManager.addTestMaterial();
+        ArrayList<Material> materialList = materialManager.getMaterial();
+        for(int i = 0; i < materialList.size(); i++){
+            String materialName = materialList.get(i).getName();
+            System.out.println((i) + ", " + materialName);
+        }
+        if (materialList.isEmpty()){
+            System.out.println("Empty List");
+        }
+        // System.out.println("Look at all the material");
+        // System.out.println("q to quit");
     }
 
     private void choiceSelection(String selection){
