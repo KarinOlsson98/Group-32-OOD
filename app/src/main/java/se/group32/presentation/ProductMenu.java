@@ -64,52 +64,73 @@ public class ProductMenu implements MenuInterface{
         System.out.println("---- Add product ----");
 
         System.out.println("Enter name of product: ");
-        String name = "Teacup"; 
-        System.out.println("Lifespan in years: ");
-        Integer lifespan = 10; 
+        String name = scanner.nextLine(); 
 
+        int lifespan = 0;
+        boolean validLifespan = false;
 
-        List<Material> materials = new ArrayList<>(); /* materialManager.getMaterials(); */
+        while (!validLifespan) {
+            System.out.println("Lifespan in years: ");
+            String input = scanner.nextLine();
+
+            validLifespan = InputValidator.validateInt(input);
+
+            if (validLifespan) {
+                lifespan = Integer.parseInt(input);
+            } else {
+                System.out.println("Not a valid lifespan, enter an integer number.");
+            }
+        }
 
         System.out.println("Available materials: ");
+
+        List<Material> materials = materialManager.getMaterial();
 
         if (materials == null || materials.isEmpty()) {
             System.out.println("List of materials is empty");
         } else {
             for (Material m : materials) {
-                System.out.println(m);
+                System.out.println("ID: " + m.getId() + " | Name: " + m.getName());
             }
         }
 
         boolean adding = true;
 
-        List<String> selectedMaterials = new ArrayList<>();
+        List<Material> selectedMaterials = new ArrayList<>();
 
+
+        // Samma material kan råka läggas till flera gånger, koda en spärr för att det inte ska kunna hända här!!
+    
         while (adding) {
-            
-            String input = "Plastic"; /*("(Enter one material at a time and press Enter. Type "q" when you are done): ")
-            
-            /** behöver någon slags koll för att se till att materialet faktiskt finns, hur?
-            *   materialManager.exist() som returnerar boolean kanske? 
-            */
-            System.out.println("Material " + input + " has been added");
-            adding = false;//Ligger här för att förhindra oändlig loop vid testning pga hårdkodat material
-/* 
+            System.out.println();
+            System.out.println("Enter ID of material you would like to add(or 'q' to finish): ");
+            String input = scanner.nextLine();
+
             if (input.equalsIgnoreCase("q")) {
                 adding = false;
-            } else if (materialManager.exists(input)) {
-                selectedMaterials.add(input);
-                System.out.println("Added: " + input);
-            } else {  
-                adding = false; //Ligger här för att förhindra oändlig loop vid testning pga hårdkodat material
-                System.out.println("Material requested doesn't exist, try again!");
+            } else {
+                if (InputValidator.validateInt(input)) {
+                    int id = Integer.parseInt(input);
 
-            }*/
+                    Material found = materialManager.getMaterialById(id);
+
+                    if (found != null) {
+                        selectedMaterials.add(found);
+                        System.out.println("Added: " + found.getName());
+                    } else {
+                        System.out.println("No material found with ID: " + id);
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number or 'q'.");
+                }
+            }
         }
-
-        // applicationManager.addProduct(id, name, lifespan, selectedMaterials);
-
-        System.out.println("Product " + name + " has been added!");
+        if (!selectedMaterials.isEmpty()) {
+            productManager.addProduct(name, lifespan, selectedMaterials);
+            System.out.println("Product '" + name + "' has been successfully created!");
+        } else {
+            System.out.println("No materials selected, product hasn't been created.");
+        }
         
     }
 
