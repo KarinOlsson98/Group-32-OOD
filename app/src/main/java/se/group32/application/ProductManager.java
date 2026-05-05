@@ -30,7 +30,24 @@ public class ProductManager {
                 return product.getName();
             }
         }
+        // If the throw keyword is not allowed (due to output only being on presentation), then return null.
         throw new IllegalArgumentException("Product with ID: " + id + " is invalid.");
+    }
+
+    // Get the product's materials by searching their corresponding ID.
+    public List<String> productsMaterials(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                // Empty list that will store all the product's materials' names. 
+                List<String> mats = new ArrayList<>();
+                for (Material material : product.getMaterials()) {
+                    mats.add(material.getName());
+                }
+                return mats;
+            }
+        }
+        // If the throw keyword is not allowed (due to output only being on presentation), then return null.
+        throw new IllegalArgumentException("Product with ID: " + id + "is invalid");
     }
 }
 

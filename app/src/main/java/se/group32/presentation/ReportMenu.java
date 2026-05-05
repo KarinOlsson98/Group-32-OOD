@@ -32,21 +32,17 @@ public class ReportMenu{
     }
 
     // This method will create the output and relay the parameters to the application layer (productManager).
-    public void showGuidance(int choice){
-        // Prints outputs to show that it's working.
-        System.out.println("showGuidance-metoden kallad...");
-        System.out.println("Beepboop...");
-
-        // Relay the index to the productManager to find the right product.
-        // Pre-determined values for testing.
-        String productName = "Vattenflaska";
-        String materialName1 = "Plast (PET)";
-
+    public void showGuidance(int choice, ProductManager pm){
         // Output
         System.out.println("--------------------");
         System.out.println("Product ID: " + choice);
-        System.out.println("Product: " + productName);
-        System.out.println("Material: " + materialName1);
+        System.out.println("Product: " + pm.productName(choice));
+
+        // Iterate if there is multiple materials for one product.
+        System.out.print("Material(s): ");
+        for (String material : pm.productsMaterials(choice)) {
+            System.out.println(material);
+        }
         System.out.println("--------------------");
     }
 
