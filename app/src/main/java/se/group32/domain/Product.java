@@ -15,4 +15,19 @@ public class Product {
         this.materials = materials;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLifespan() {
+        return lifespan;
+    }
+
+    public List<Material> getMaterials() {
+        return materials;
+    }
 }

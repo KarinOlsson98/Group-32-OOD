@@ -15,6 +15,12 @@ public class ProductManager {
 
         products.add(newProduct);
 
+    private List<Product> products = new ArrayList<>();
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
         System.out.println("Product saved with ID: " + nextId); //För testkörning!!
 
         nextId++;
