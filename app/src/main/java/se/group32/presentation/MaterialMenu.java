@@ -37,7 +37,6 @@ public class MaterialMenu implements MenuInterface{
     }
 
     public void printMenu(){
-        materialManager.addTestMaterial();
         ArrayList<Material> materialList = materialManager.getMaterial();
         for(int i = 0; i < materialList.size(); i++){
             String materialName = materialList.get(i).getName();
