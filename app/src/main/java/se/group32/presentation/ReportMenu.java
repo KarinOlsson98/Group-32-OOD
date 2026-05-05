@@ -37,9 +37,9 @@ public class ReportMenu{
         // Output
         System.out.println("--------------------");
         System.out.println("Product ID : " + choice);
-        System.out.println("Product Name : " + pm.getProductName_dj(choice));
-        System.out.println("Material(s) : " + pm.getProductsMaterials_dj(choice));
-        System.out.println("Recycling Category : " + pm.getRecyclingGuidance_dj(choice));
+        System.out.println("Product Name : " + pm.getProductName(choice));
+        System.out.println("Material(s) : " + pm.getProductsMaterial(choice));
+        System.out.println("Recycling Category : " + pm.getRecyclingGuidance(choice));
         System.out.println("--------------------");
     }
 

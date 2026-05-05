@@ -11,15 +11,15 @@ public class ProductManager {
     RecyclingGuidance guidance = new RecyclingGuidance();
 
     // Get recyclingGuidance.
-    public String getRecyclingGuidance_dj(int choice) {
-        return guidance.get_product_guidance(product);
+    public String getRecyclingGuidance(int choice) {
+        return guidance.getProductGuidance(product);
     }
 
-    public String getProductName_dj(int choice) {
-        return product.get_product_name_dj(choice);
+    public String getProductName(int choice) {
+        return product.getProductName(choice);
     }
 
-    public String getProductsMaterials_dj(int choice) {
+    public String getProductsMaterial(int choice) {
         return product.getProductsMaterials(choice);
     }
 
