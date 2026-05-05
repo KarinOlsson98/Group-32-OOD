@@ -101,25 +101,40 @@ enum RecyclingCategory{
     {PLASTIC, PAPER, METAL}
 }
 
-'Main "1" o-- "1" MainMenu
+'MainMenu
 MenuInterface <-- MainMenu
-MainMenu *-- MaterialMenu
-MainMenu *-- ProductMenu
+MainMenu *-l- MaterialMenu
+MainMenu *-r- ProductMenu
+
+'ReportMenu
 ProductMenu *-- ReportMenu
 MaterialMenu *-- ReportMenu
-MenuInterface <-- MaterialMenu
-MenuInterface <-- ProductMenu
 ReportMenu "1" o-- "1" ProductManager
 ReportMenu "1" o-- "1" MaterialManager
+
+'MenuInterface
+MenuInterface <-- MaterialMenu
+MenuInterface <-- ProductMenu
+
+'RecyclingGuidence
 MaterialManager o-- RecyclingGuidence
 ProductManager o-- RecyclingGuidence
+
+'ProductManager
 ProductManager "1" --> "many" Product
+ProductManager --> ImpactCalculationStrategy
+
+'ProductMenu
 ProductMenu o-- ProductManager
 ProductMenu --> InputValidator
-ProductManager --> ImpactCalculationStrategy
+
+'MaterialMenu
+MaterialMenu --> InputValidator
+
 Product "1" *-- "many" Material
 Material *-- RecyclingCategory
-MaterialMenu --> InputValidator
+
+InputValidator -[hidden]-> ReportMenu
 
 ImpactCalculationStrategy <-- WeightedByLifespanStrategy
 ImpactCalculationStrategy <-- SimpleSumStrategy
