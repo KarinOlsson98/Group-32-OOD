@@ -14,17 +14,23 @@ public class ProductManager {
         Product newProduct = new Product(nextId, name, lifespan, materials);
 
         products.add(newProduct);
+        System.out.println("Product saved with ID: " + nextId); //För testkörning!!
 
-    private List<Product> products = new ArrayList<>();
+        nextId++;
+    }
 
     public List<Product> getProducts() {
         return products;
     }
 
-        System.out.println("Product saved with ID: " + nextId); //För testkörning!!
-
-        nextId++;
-
+    // Get the product's name by searching their corresponding ID.
+    public String productName(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product.getName();
+            }
+        }
+        throw new IllegalArgumentException("Product with ID: " + id + " is invalid.");
     }
 }
 
