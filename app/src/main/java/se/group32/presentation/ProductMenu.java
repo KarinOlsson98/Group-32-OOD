@@ -146,7 +146,7 @@ public class ProductMenu implements MenuInterface{
             System.out.println("No products found.");
         } else {
             for (Product p : products) {
-                System.out.printf("ID: %d | Name: %s | Lifespan: %d | Material(s): ", p.getId(), p.getName(), p.getLifespan());
+                System.out.printf("ID: %d | Name: %s | Lifespan: %d | Material(s) ", p.getId(), p.getName(), p.getLifespan());
 
                 List<Material> materials = p.getMaterials();
                 
