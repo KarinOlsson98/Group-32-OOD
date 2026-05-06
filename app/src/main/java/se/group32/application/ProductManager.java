@@ -34,7 +34,7 @@ public class ProductManager {
         throw new IllegalArgumentException("Product with ID: " + id + " is invalid.");
     }
 
-    // Get the product's materials by searching their corresponding ID.
+    // Get the product's material by searching their corresponding ID.
     public List<String> productsMaterials(int id) {
         for (Product product : products) {
             if (product.getId() == id) {

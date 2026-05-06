@@ -202,6 +202,6 @@ public class ProductMenu implements MenuInterface{
             }
         }
 
-        reportMenu.showGuidance(parsedInput);
+        reportMenu.showProductsRecyclingGuidance(parsedInput, productManager);
     }
 }
