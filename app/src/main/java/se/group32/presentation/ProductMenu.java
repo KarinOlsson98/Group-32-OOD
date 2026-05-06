@@ -31,6 +31,7 @@ public class ProductMenu implements MenuInterface{
         while (running) {
             printMenu();
 
+            System.out.print("Choose an option: ");
             String choice = scanner.nextLine();
 
 
@@ -56,6 +57,7 @@ public class ProductMenu implements MenuInterface{
         System.out.println(" 4) Recycling guidance");
         System.out.println(" Q) Return to main menu");
         System.out.println("----------------------");
+        System.out.println();
     }
 
     //Skapar ny produkt med material
@@ -144,10 +146,19 @@ public class ProductMenu implements MenuInterface{
             System.out.println("No products found.");
         } else {
             for (Product p : products) {
-                System.out.println("ID: " + p.getId() +
-                                    " | Name: " + p.getName() +
-                                    " | Lifespan: " + p.getLifespan() + " years" + 
-                                    " | Materials: " + p.getMaterials());
+                System.out.printf("ID: %d | Name: %s | Lifespan: %d | Material(s): ", p.getId(), p.getName(), p.getLifespan());
+
+                List<Material> materials = p.getMaterials();
+                
+                // Does a loop through each material name for the matching product and add a comma until the very last.
+                for (int i = 0; i < materials.size(); i++) {
+                    System.out.print(materials.get(i).getName());
+
+                    if (i < materials.size() - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.println();
             }
         }
 
@@ -183,7 +194,6 @@ public class ProductMenu implements MenuInterface{
 
     private void showRecyclingGuidance() {
         System.out.println();
-        System.out.println("---- Recycling Guidance ----");
         int parsedInput = 0;
         boolean result = false;
         while (!result) {
