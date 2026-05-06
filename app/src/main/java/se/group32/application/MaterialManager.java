@@ -29,12 +29,12 @@ public class MaterialManager {
 
     // Method calls materialName(String name) to get the corresponding name to Material object, thus return the guidance using the Material object as argument.
     public String getGuidance(String mat) {
-        Material m = materialName(mat);
+        Material m = checkMaterialName(mat);
         return rg.getGuidance(m);
     }
 
     // Loop through each material that is equals to the String name parameter and return the equivalent Material object.
-    public Material materialName(String name) {
+    public Material checkMaterialName(String name) {
         for (Material material : materials) {
             if (material.getName().equals(name)) {
                 return material;
