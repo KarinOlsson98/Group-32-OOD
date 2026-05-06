@@ -35,8 +35,7 @@ public class ReportMenu{
     public void showProductsRecyclingGuidance(int choice, ProductManager pm, MaterialManager mm){
 
         try {
-            System.out.println("--------------------");
-            System.out.println("Product ID: " + choice);
+            System.out.println("---- Recycling Guidance for Product ID: " + choice + " ----");
             System.out.println("Product: " + pm.productName(choice) + "\n");
             System.out.print("Material(s):\n");
             for (String material : pm.productsMaterials(choice)) {
