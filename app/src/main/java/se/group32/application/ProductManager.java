@@ -31,7 +31,7 @@ public class ProductManager {
             }
         }
         // If the throw keyword is not allowed (due to output only being on presentation), then return null.
-        throw new IllegalArgumentException("Product with ID: " + id + " is invalid.");
+        throw new IllegalArgumentException("Product's name with ID: " + id + " does not exist.");
     }
 
     // Get the product's material by searching their corresponding ID.
@@ -47,7 +47,7 @@ public class ProductManager {
             }
         }
         // If the throw keyword is not allowed (due to output only being on presentation), then return null.
-        throw new IllegalArgumentException("Product with ID: " + id + "is invalid");
+        throw new IllegalArgumentException("Product's material(s) with ID: " + id + " do not exist.");
     }
 }
 

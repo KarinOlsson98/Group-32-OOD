@@ -1,7 +1,6 @@
 package se.group32.presentation;
 
 import se.group32.application.*; // Assume that we only have Material- and ProductManager classes only.
-import se.group32.domain.RecyclingGuidance;
 
 public class ReportMenu{
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
@@ -33,22 +32,21 @@ public class ReportMenu{
     }
 
     // This method will create the output and relay the parameters to the application layer (productManager).
-    public void showProductsRecyclingGuidance(int choice, ProductManager pm){
-        // Output
-        System.out.println("--------------------");
-        System.out.println("Product ID: " + choice);
-        System.out.println("Product: " + pm.productName(choice) + "\n");
+    public void showProductsRecyclingGuidance(int choice, ProductManager pm, MaterialManager mm){
 
-        // Iterate if there is multiple materials for one product.
-        System.out.print("Material(s):\n");
-        for (String material : pm.productsMaterials(choice)) {
-            try {
-                System.out.println(material);
-            } catch (Exception e) {
-                // TODO: handle exception
+        try {
+            System.out.println("--------------------");
+            System.out.println("Product ID: " + choice);
+            System.out.println("Product: " + pm.productName(choice) + "\n");
+            System.out.print("Material(s):\n");
+            for (String material : pm.productsMaterials(choice)) {
+                System.out.println(material + ": " + mm.getGuidance(material));
             }
+            System.out.println("--------------------");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Recycling Guidance error: " + e.getMessage());
         }
-        System.out.println("--------------------");
     }
 
     // This method will create the output and relay the parameters to the application layer (materialManager).
