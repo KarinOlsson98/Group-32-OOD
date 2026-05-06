@@ -35,11 +35,11 @@ public class ReportMenu{
     public void showProductsRecyclingGuidance(int choice, ProductManager pm, MaterialManager mm){
 
         try {
-            System.out.println("---- Recycling Guidance for Product ID: " + choice + " ----");
-            System.out.println("Product: " + pm.productName(choice) + "\n");
-            System.out.print("Material(s):\n");
+            System.out.println("---- ♻️  Recycling Guidance for " + pm.productName(choice) + " ----");
+            System.out.println("Product ID: " + choice);
+            System.out.println("Material(s):");
             for (String material : pm.productsMaterials(choice)) {
-                System.out.println(material + ": " + mm.getGuidance(material));
+                System.out.println(material + " ➡️  " + mm.getGuidance(material));
             }
             System.out.println("--------------------");
 
