@@ -16,4 +16,10 @@ public class Material {
     public String getName() {
         return name;
     }
+
+    // toString() method to prevent returned hashcodes.
+    @Override
+    public String toString() {
+         return name;
+    }
 }
