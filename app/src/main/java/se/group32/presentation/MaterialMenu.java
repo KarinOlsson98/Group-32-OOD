@@ -64,5 +64,7 @@ public class MaterialMenu implements MenuInterface{
     private void materialSelection(){
         System.out.println("Enter name/index of material");
         String selection = scanner.nextLine();
+        int choice = Integer.parseInt(selection);
+        reportMenu.showMaterialImpact(choice, materialManager);
     }
 }

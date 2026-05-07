@@ -31,9 +31,8 @@ public class ReportMenu{
 
     }
 
-    // This method will create the output and relay the parameters to the application layer (productManager).
+    // This method will create the output and relay the arguments to the application layer (productManager & materialManager).
     public void showProductsRecyclingGuidance(int choice, ProductManager pm, MaterialManager mm){
-
         try {
             System.out.println("---- ♻️  Recycling Guidance for " + pm.productName(choice) + " ----");
             System.out.println("Product ID: " + choice);
@@ -48,23 +47,17 @@ public class ReportMenu{
         }
     }
 
-    // This method will create the output and relay the parameters to the application layer (materialManager).
-    public void showMaterialImpact(int choice) {
-        // Prints outputs to show that it's working.
-        System.out.println("showMaterial-metoden kallad...");
-        System.out.println("Beepboop...");
+    // This method will create the output and relay the arguments to the application layer (materialManager).
+    public void showMaterialImpact(int choice, MaterialManager mm) {
+        try {
+            System.out.println("---- ♻️  Material Impact for " + mm.materialName(choice) + " ----");
+            System.out.println("Material ID: " + choice);
+            System.out.println("Material's Impact: " + "High");
+            System.out.println("--------------------");
 
-        // Relay the index to the materialManager to find the right material.
-        // Pre-determined values for testing.
-        String material1 = "Plast";
-        String material2 = "Hög";
-
-        // Output
-        System.out.println("--------------------");
-        System.out.println("Material ID: " + choice);
-        System.out.println("Material: " + material1);
-        System.out.println("Materialets Impact: " + material2);
-        System.out.println("--------------------");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Show Material Impact error: " + e.getMessage());
+        }
     }
 
 }
