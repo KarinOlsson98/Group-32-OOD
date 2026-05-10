@@ -101,7 +101,6 @@ public class ProductMenu implements MenuInterface{
         List<Material> selectedMaterials = new ArrayList<>();
 
 
-        // Samma material kan råka läggas till flera gånger, koda en spärr för att det inte ska kunna hända här!!
     
         while (adding) {
             System.out.println();
@@ -109,7 +108,11 @@ public class ProductMenu implements MenuInterface{
             String input = scanner.nextLine();
 
             if (input.equalsIgnoreCase("q")) {
-                adding = false;
+                if (selectedMaterials.isEmpty()) {
+                    System.out.println("You must add at least one material before finishing.");
+                } else {
+                    adding = false;
+                }
             } else {
                 if (InputValidator.validateInt(input)) {
                     int id = Integer.parseInt(input);
@@ -117,8 +120,12 @@ public class ProductMenu implements MenuInterface{
                     Material found = materialManager.getMaterialById(id);
 
                     if (found != null) {
+                        if (selectedMaterials.contains(found)) {
+                            System.out.println("Material '" + found.getName() + "' is already added to this product.");
+                        } else {
                         selectedMaterials.add(found);
                         System.out.println("Added: " + found.getName());
+                        }
                     } else {
                         System.out.println("No material found with ID: " + id);
                     }
