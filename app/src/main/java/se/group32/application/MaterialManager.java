@@ -4,14 +4,27 @@ import se.group32.domain.RecyclingGuidance;
 
 import java.util.ArrayList; 
 
+import se.group32.domain.Recyclability;
+
 public class MaterialManager {
     
     private ArrayList<Material> materials = new ArrayList<Material>();
     private RecyclingGuidance rg = new RecyclingGuidance();
 
     public MaterialManager() {
-        materials.add(new Material(1, "Plastic")); //Hårdkodat för testning
-        materials.add(new Material(2, "Aluminium")); //Hårdkodat för testning
+        materials.add(new Material(1, "Virgin Aluminum", 12.0, Recyclability.High));
+        materials.add(new Material(2, "Recycled Aluminum", 1.5, Recyclability.High));
+        materials.add(new Material(3, "Virgin Steel", 2.2, Recyclability.High));
+        materials.add(new Material(4, "Recycled Steel", 0.4, Recyclability.High));
+        materials.add(new Material(5, "PET Plastic", 3.5, Recyclability.Medium));
+        materials.add(new Material(6, "HDPE Plastic", 2.0, Recyclability.Medium));
+        materials.add(new Material(7, "PVC Plastic", 2.1, Recyclability.Low));
+        materials.add(new Material(8, "Virgin Glass", 1.1, Recyclability.High));
+        materials.add(new Material(9, "Recycled Glass", 0.64, Recyclability.High));
+        materials.add(new Material(10, "Wood (Class 2)", 0.31, Recyclability.Low));
+        materials.add(new Material(11, "Paper(Recycled/Board)", 0.50, Recyclability.Medium));
+        materials.add(new Material(12, "Cotton (Fabric)", 5.5, Recyclability.Low));
+        materials.add(new Material(13, "Natural Rubber", 1.3, Recyclability.Low));
     }
 
     public ArrayList<Material> getMaterial(){
