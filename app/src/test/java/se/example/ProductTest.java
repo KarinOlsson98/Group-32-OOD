@@ -3,9 +3,12 @@
  */
 package se.example;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import se.group32.presentation.*;
@@ -43,7 +46,6 @@ class ProductTest {
     }
 
     @Test
-
     void shouldGetIdWhenAskingForProductID(){
         // Arrange
         Material plastic = new Material(1, "Plastic");
@@ -53,5 +55,17 @@ class ProductTest {
 
         // Assert // Act
         assertEquals(1, bottle.getId());
+    }
+
+    @Test
+    void shouldGetSameMaterialWhenAskingForProductMaterial(){
+        // Arrange
+        Material plastic = new Material(1, "Plastic");
+        Material glass  = new Material(2, "Glass");
+        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
+
+        // Assert // Act
+        Material material = bottle.getMaterials().get(0);
+        assertSame(plastic, material);
     }
 }
