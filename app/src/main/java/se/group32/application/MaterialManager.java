@@ -12,7 +12,7 @@ public class MaterialManager {
     private RecyclingGuidance rg = new RecyclingGuidance();
 
     public MaterialManager() {
-        materials.add(new Material(1, "Virgin Aluminum", 12.0, Recyclability.High)); //Hårdkodat för testning
+        materials.add(new Material(1, "Virgin Aluminum", 12.0, Recyclability.High));
         materials.add(new Material(2, "Recycled Aluminum", 1.5, Recyclability.High));
         materials.add(new Material(3, "Virgin Steel", 2.2, Recyclability.High));
         materials.add(new Material(4, "Recycled Steel", 0.4, Recyclability.High));
