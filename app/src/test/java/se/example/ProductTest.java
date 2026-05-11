@@ -41,4 +41,17 @@ class ProductTest {
         // Assert
         assertEquals("Bottle", bottle.getName());
     }
+
+    @Test
+
+    void shouldGetIdWhenAskingForProductID(){
+        // Arrange
+        Material plastic = new Material(1, "Plastic");
+        Material glass  = new Material(2, "Glass");
+        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
+
+
+        // Assert // Act
+        assertEquals(1, bottle.getId());
+    }
 }
