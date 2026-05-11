@@ -18,51 +18,46 @@ import se.group32.domain.*;
 import org.junit.jupiter.api.Test;
 
 class ProductTest {
-    @Test
-    void addProductShouldBeCreated() {
+    
+    //Commonly used, only needs to be changed in one spot now
+    Product returnProduct(){
         // Arrange
-        Material plastic = new Material(1, "Plastic");
-        Material glass  = new Material(2, "Glass");
+        Material plastic = new Material(1, "Plastic", 10.0, Recyclability.Medium);
+        Material glass  = new Material(2, "Glass", 5.0, Recyclability.High);
 
         // Act
         Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
+        return bottle;
+    }
 
+    @Test
+    void addProductShouldBeCreated() {
         // Assert
-        assertNotNull(bottle);
+        Product product = returnProduct();
+        assertNotNull(product);
     }
 
     @Test
     void shouldGetNameWhenAskingForProductsName() {
-        // Arrange
-        Material plastic = new Material(1, "Plastic");
-        Material glass  = new Material(2, "Glass");
-        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
-
-        // Act
-        bottle.getName();
+        String productName = returnProduct().getName();
 
         // Assert
-        assertEquals("Bottle", bottle.getName());
+        assertEquals("Bottle", productName);
     }
 
     @Test
     void shouldGetIdWhenAskingForProductID(){
-        // Arrange
-        Material plastic = new Material(1, "Plastic");
-        Material glass  = new Material(2, "Glass");
-        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
-
+        int productId = returnProduct().getId();
 
         // Assert // Act
-        assertEquals(1, bottle.getId());
+        assertEquals(1, productId);
     }
 
     @Test
     void shouldGetSameMaterialWhenAskingForProductMaterial(){
         // Arrange
-        Material plastic = new Material(1, "Plastic");
-        Material glass  = new Material(2, "Glass");
-        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
+        Material plastic = new Material(1, "Plastic", 10.0, Recyclability.High);
+        Product bottle = new Product(1, "Bottle", 5, List.of(plastic));
 
         // Assert // Act
         Material material = bottle.getMaterials().get(0);
@@ -71,12 +66,8 @@ class ProductTest {
 
     @Test
     void shouldGetLifespanWhenAskingForProductLifespan(){
-        // Arrange
-        Material plastic = new Material(1, "Plastic");
-        Material glass  = new Material(2, "Glass");
-        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
-
+        int lifespan = returnProduct().getLifespan();
         // Assert // Act
-        assertEquals(5, bottle.getLifespan());
+        assertEquals(5, lifespan);
     }
 }
