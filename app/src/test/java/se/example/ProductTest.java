@@ -68,4 +68,15 @@ class ProductTest {
         Material material = bottle.getMaterials().get(0);
         assertSame(plastic, material);
     }
+
+    @Test
+    void shouldGetLifespanWhenAskingForProductLifespan(){
+        // Arrange
+        Material plastic = new Material(1, "Plastic");
+        Material glass  = new Material(2, "Glass");
+        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
+
+        // Assert // Act
+        assertEquals(5, bottle.getLifespan());
+    }
 }
