@@ -32,22 +32,20 @@ public class ReportMenu{
     }
 
     // This method will create the output and relay the parameters to the application layer (productManager).
-    public void showGuidance(int choice){
-        // Prints outputs to show that it's working.
-        System.out.println("showGuidance-metoden kallad...");
-        System.out.println("Beepboop...");
+    public void showProductsRecyclingGuidance(int choice, ProductManager pm, MaterialManager mm){
 
-        // Relay the index to the productManager to find the right product.
-        // Pre-determined values for testing.
-        String productName = "Vattenflaska";
-        String materialName1 = "Plast (PET)";
+        try {
+            System.out.println("---- ♻️  Recycling Guidance for " + pm.productName(choice) + " ----");
+            System.out.println("Product ID: " + choice);
+            System.out.println("Material(s):");
+            for (String material : pm.productsMaterials(choice)) {
+                System.out.println(material + " ➡️  " + mm.getGuidance(material));
+            }
+            System.out.println("--------------------");
 
-        // Output
-        System.out.println("--------------------");
-        System.out.println("Product ID: " + choice);
-        System.out.println("Product: " + productName);
-        System.out.println("Material: " + materialName1);
-        System.out.println("--------------------");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Recycling Guidance error: " + e.getMessage());
+        }
     }
 
     // This method will create the output and relay the parameters to the application layer (materialManager).
