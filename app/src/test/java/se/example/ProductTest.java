@@ -15,11 +15,14 @@ import se.group32.presentation.*;
 import se.group32.application.*;
 import se.group32.domain.*;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ProductTest {
     
     //Commonly used, only needs to be changed in one spot now
+    @BeforeEach
     Product returnProduct(){
         // Arrange
         Material plastic = new Material(1, "Plastic", 10.0, Recyclability.Medium);
