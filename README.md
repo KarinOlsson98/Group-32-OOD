@@ -11,20 +11,26 @@ I programmet ska man kunna skapa produkter, lista material, visa produktlista oc
 - MainMenu
 - Main
 - Lista produkter
+- [NY] SimpleSumStrategy
+- [NY] WeightedByLifespanStrategy
 
 
 ### Johanna
 - ProductMenu
 - Skapa produkt
+- [NY] MaterialTests
 
 ### Anton
 - MaterialMenu
 - Lista material
+- [NY] Refactor --> ListOfMaterials
 
 ### Da Jing
 - ReportMenu
 - InputValidator
 - Visa produktens återvinningsguide
+- [NY] RecyclingsGuidanceTest
+- [NY] Uppdatera RecyclingsGuidance med nya material.
 
 ## Git workflow description
 Varje person kommer jobba i sin egen branch. Vi kommer ha en development branch som vi pushar till innan vi mergear till main (protected main och pull requests). 
