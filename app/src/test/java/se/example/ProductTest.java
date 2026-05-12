@@ -15,31 +15,32 @@ import se.group32.presentation.*;
 import se.group32.application.*;
 import se.group32.domain.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ProductTest {
-    
+    Product product;
+
     //Commonly used, only needs to be changed in one spot now
-    Product returnProduct(){
+    @BeforeEach
+    void returnProduct(){
         // Arrange
         Material plastic = new Material(1, "Plastic", 10.0, Recyclability.Medium);
         Material glass  = new Material(2, "Glass", 5.0, Recyclability.High);
 
         // Act
-        Product bottle = new Product(1, "Bottle", 5, List.of(plastic, glass));
-        return bottle;
+        product = new Product(1, "Bottle", 5, List.of(plastic, glass));
     }
 
     @Test
     void addProductShouldBeCreated() {
         // Assert
-        Product product = returnProduct();
         assertNotNull(product);
     }
 
     @Test
     void shouldGetNameWhenAskingForProductsName() {
-        String productName = returnProduct().getName();
+        String productName = product.getName();
 
         // Assert
         assertEquals("Bottle", productName);
@@ -47,7 +48,7 @@ class ProductTest {
 
     @Test
     void shouldGetIdWhenAskingForProductID(){
-        int productId = returnProduct().getId();
+        int productId = product.getId();
 
         // Assert // Act
         assertEquals(1, productId);
@@ -66,7 +67,7 @@ class ProductTest {
 
     @Test
     void shouldGetLifespanWhenAskingForProductLifespan(){
-        int lifespan = returnProduct().getLifespan();
+        int lifespan = product.getLifespan();
         // Assert // Act
         assertEquals(5, lifespan);
     }
