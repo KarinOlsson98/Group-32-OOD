@@ -97,7 +97,7 @@ class InputValidator{
     +ValidateInt(String string):boolean
 }
 
-enum RecyclingCategory{
+enum MaterialCategory{
     {PLASTIC, PAPER, METAL}
 }
 
@@ -132,7 +132,7 @@ ProductMenu --> InputValidator
 MaterialMenu --> InputValidator
 
 Product "1" *-- "many" Material
-Material *-- RecyclingCategory
+Material *-- MaterialCategory
 
 InputValidator -[hidden]-> ReportMenu
 
