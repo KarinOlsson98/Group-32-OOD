@@ -23,7 +23,7 @@ class ProductTest {
 
     //Commonly used, only needs to be changed in one spot now
     @BeforeEach
-    void returnProduct(){
+    void setupProduct(){
         // Arrange
         Material plastic = new Material(1, "Plastic", 10.0, Recyclability.Medium);
         Material glass  = new Material(2, "Glass", 5.0, Recyclability.High);
