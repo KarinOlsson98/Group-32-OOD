@@ -195,7 +195,7 @@ public class ProductMenu implements MenuInterface{
             }
         }
 
-        reportMenu.impactCalculation(parsedInput);
+        reportMenu.impactCalculation(parsedInput, productManager);
 
     }
 
