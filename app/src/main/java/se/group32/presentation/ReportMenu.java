@@ -1,6 +1,10 @@
 package se.group32.presentation;
 
 import se.group32.application.*; // Assume that we only have Material- and ProductManager classes only.
+import se.group32.domain.ImpactCalculationStrategy;
+import se.group32.domain.Product;
+import se.group32.domain.SimpleSumStrategy;
+import se.group32.domain.WeightedByLifespanStrategy;
 
 public class ReportMenu{
     /** ReportMenu ska bli kallad av ProductMenu klassen om 
@@ -9,27 +13,36 @@ public class ReportMenu{
      *      Den ska också (nuvarande) fixa outputs:n.*/
 
     // This method will show a list of available products and ask which of the product that the user wants to calculate the impact of.
-    public void impactCalculation(int choice){
-        // Prints outputs to show that it's working.
-        System.out.println("impactCalculation-metoden kallad...");
-        System.out.println("Beepboop...");
+    public void impactCalculation(int choice, ProductManager pm){
+        Product selectedProduct = null;
+        for (Product p: pm.getProducts()) {
+            if (p.getId() == choice) {
+                selectedProduct = p;
+                break;
+            }
+        }
 
-        // Relay the index to the productManager to find the right product for calculate.
-        // Pre-determined values for testing.
-        int number = 1000;
-        String product = "Vattenflaska";
-        String result = "Hög";
-        String lifespan = "1 year";
+            if (selectedProduct != null) {
+                ImpactCalculationStrategy rawStrategy = new SimpleSumStrategy();
+                ImpactCalculationStrategy annualStrategy = new WeightedByLifespanStrategy();
 
-        // Output
-        System.out.println("--------------------");
-        System.out.println("Product ID: " + choice);
-        System.out.println("Product: " + product);
-        System.out.printf("The product's enviromental impact is %s with the of score of %d%n.", result, number);
-        System.out.println("Product's lifespan: " + lifespan);
-        System.out.println("--------------------");
+                double rawImpact = rawStrategy.calculateImpact(selectedProduct);
+                double annualImpact = annualStrategy.calculateImpact(selectedProduct);
 
-    }
+                System.out.println("--------------------");
+                System.out.println("Product ID: " + choice);
+                System.out.println("Product: " + selectedProduct.getName());
+                System.out.printf("Total Raw Impact: %.2f kg CO2.%n", rawImpact);
+                System.out.printf("Annual impact: %.2f kg CO2e / year.%n", annualImpact);
+                System.out.println("Product's lifespan: " + selectedProduct.getLifespan()+ " years");
+                System.out.println("--------------------");
+            } else {
+                System.out.println("Could not find a product with ID " + choice);
+            }
+        }
+        
+
+    
 
     // This method will create the output and relay the parameters to the application layer (productManager).
     public void showProductsRecyclingGuidance(int choice, ProductManager pm, MaterialManager mm){
